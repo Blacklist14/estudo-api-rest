@@ -24,5 +24,5 @@ npm start
 
 - [x] Criar imagem Mysql e conectar com Sequelize
 - [ ] Criar CRUD para clients
-- [ ] Criar CRUD para Produtos
+- [x] Criar CRUD para Produtos 0bs(FALTANDO UPDATE DE PRODUTOS)
 - [ ] Criar CRUD para Pedidos

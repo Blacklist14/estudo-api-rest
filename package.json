@@ -9,11 +9,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.2",
     "express": "^4.17.2",
+    "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.15",
     "sequelize": "^6.16.1"
   },
   "devDependencies": {},
-  "description": ""
+  "description": "* Para instalar dependências digite no terminal oque esta  aqui ⬇️",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blacklist14/Estudo-CRUD-DOCKER.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Blacklist14/Estudo-CRUD-DOCKER/issues"
+  },
+  "homepage": "https://github.com/Blacklist14/Estudo-CRUD-DOCKER#readme"
 }

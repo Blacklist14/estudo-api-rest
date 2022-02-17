@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize")
 const database = require("./db")
 
-const Produto = database.define('produto',{
+const Produto = database.define('produto', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -10,11 +10,10 @@ const Produto = database.define('produto',{
     },
     nome: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull: true
     },
-    preco:Sequelize.DECIMAL,
+    preco: Sequelize.DECIMAL,
     descricao: Sequelize.STRING
-    
+
 })
-Produto.sync()
 module.exports = Produto
