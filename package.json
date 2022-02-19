@@ -14,7 +14,8 @@
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.15",
-    "sequelize": "^6.16.1"
+    "sequelize": "^6.16.1",
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {},
   "description": "* Para instalar dependências digite no terminal oque esta  aqui ⬇️",

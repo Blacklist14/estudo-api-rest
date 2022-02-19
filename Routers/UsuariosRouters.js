@@ -65,4 +65,4 @@ router.patch("/Usuarios/:id_usuario",async (req,res) => {
 
 })
 
-module.exports = router
+module.exports = router;
