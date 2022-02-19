@@ -38,5 +38,23 @@ router.delete('/Produtos/:id_name', async (req, res) => {
         })
     }
 })
+// Atualiza produto
+router.patch('/Produtos/:id_produto',async (req,res) => {
+    const id = req.params.id_produto
+    const produtoUp = req.body
 
+    const consuProduto = await Produto.findOne({
+        where: {id}
+    })
+    if(consuProduto === null){
+        return res.status(404).json({message:"Produto inexistente"})
+    }
+    else{
+        const attProduto = await Produto.update(produtoUp,
+        {
+            where:{id}
+        })
+        return res.status(200).json({message:"Update concluido",id})
+    }
+})
 module.exports = router;

@@ -1,0 +1,84 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+    "title":"Estudo-CRUD-DOCKER",
+    "description":"Estou estudando docker e CRUD mas também irei tentar aplicar SOLID.",
+    "termsOfService":"http://localhost:3006/terms",
+        "contact":{
+            "name":"API Support",
+            "url":"https://www.linkedin.com/in/luis-antonio-alves-santos-29a770211/"
+        },
+        "version":"1.0.5"
+    },
+    "servers":[
+        {
+            "url": "http://localhost:3006/",
+            "description":"API APRENDIZADO"
+        }
+    ],
+    "paths":{
+        "/Produtos":{
+            "post":{
+                "summary":"Cadastra um novo Produto",
+                "description":"Cria um Produto novo",
+                "tags":["Produtos"],
+                "requestBody": {
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Produtos"
+                            },
+                            "examples":{
+                                "Produtos":{
+                                    "value":{
+                                        "nome":"Fusca Tunado",
+                                        "preco": 5000,
+                                        "descricao":"carro roubado mas tem seguro kk"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "400":{
+                        "description":"Produto já existe"
+                    },
+                    "401":{
+                        "description":"Não authorizado"
+                    },
+                    "200":{
+                        "description":"Produto criado",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Produtos"
+                                }
+                            }
+                        }
+                    }
+                }
+        
+            }
+        }
+    },
+    "components":{
+        "schemas":{
+            "Produtos":{
+                "type":"object",
+                "properties":{
+                    "nome":{
+                        "type": "string"
+                    },
+                    "preco":{
+                        "type": "number"
+                    },
+                    "descricao":{
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

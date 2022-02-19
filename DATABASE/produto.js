@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize")
 const database = require("./db")
 
+//Cria tabela produtos
 const Produto = database.define('produto', {
     id: {
         type: Sequelize.INTEGER,
@@ -12,8 +13,9 @@ const Produto = database.define('produto', {
         type: Sequelize.STRING,
         allowNull: true
     },
-    preco: Sequelize.DECIMAL,
+    preco: Sequelize.INTEGER,
     descricao: Sequelize.STRING
 
 })
+Produto.sync()
 module.exports = Produto
