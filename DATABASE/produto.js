@@ -12,6 +12,10 @@ const Produto = database.define('produto', {
         type: Sequelize.STRING,
         allowNull: true
     },
+    estoque:{
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
     preco: Sequelize.INTEGER,
     descricao: Sequelize.STRING
 })

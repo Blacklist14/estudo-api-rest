@@ -20,7 +20,7 @@ router.get('/Pedidos/:id_pedido',async (req,res) => {
 router.post('/Pedidos', async (req,res) => {
    const {quantidade_produto,produtoId,clientId} = req.body
    const novoPedido = await Pedidos.create({quantidade_produto,produtoId,clientId})
-   res.json(novoPedido)
+   res.status(201).json(novoPedido)
 })
 
 module.exports = router

@@ -9,8 +9,8 @@ router.get('/Produtos', async (req, res) => {
 })
 // Cria novos produtos
 router.post('/Produtos', async (req, res) => {
-    const {nome,preco,descricao} = req.body;
-    const novoProduto = await Produto.create({nome, preco,descricao})
+    const {nome,estoque,preco,descricao} = req.body;
+    const novoProduto = await Produto.create({nome,estoque,preco,descricao})
 
     return res.status(201).json({ menssagem: "Produto criado"})
        
