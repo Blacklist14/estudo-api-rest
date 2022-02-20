@@ -15,10 +15,10 @@ const Usuarios = database.define('usuarios',{
     },
     cpf:{
         type:Sequelize.STRING(14),
-        allowNull:true
+        allowNull:true,
+        unique:true
     }
 })
-
 Usuarios.sync()
 
 module.exports = Usuarios
