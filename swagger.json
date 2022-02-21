@@ -18,6 +18,28 @@
     ],
     "paths":{
         "/Produtos":{
+            "get":{
+                "summary":"Busca todos produtos",
+                "tags":["Produtos"],
+                "responses":{
+                    "200":{
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "id":{"type":"number"},
+                                        "nome":{"type":"string"},
+                                        "estoque":{"type":"number"},
+                                        "preco":{"type":"number"},
+                                        "descricao":{"type":"string"}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "post":{
                 "summary":"Cadastra um novo Produto",
                 "description":"Cria um Produto novo",
@@ -28,14 +50,11 @@
                             "schema":{
                                 "$ref": "#/components/schemas/Produtos"
                             },
-                            "examples":{
-                                "Produtos":{
-                                    "value":{
-                                        "nome":"Fusca Tunado",
-                                        "preco": 5000,
-                                        "descricao":"carro roubado mas tem seguro kk"
-                                    }
-                                }
+                            "example":{
+                                "nome":"Fusca Tunado",
+                                "preco": 5000,
+                                "estoque":35,
+                                "descricao":"carro roubado mas tem seguro kk"
                             }
                         }
                     }
@@ -61,6 +80,29 @@
                 }
         
             }
+        },
+        "/Usuarios":{
+            "get":{
+                "summary":"Busca usuarios",
+                "description":"Busca por todos usuarios",
+                "tags":["Usuarios"],
+                "responses":{
+                    "200":{
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "id":{"type":"number"},
+                                        "nome":{"type":"string"},
+                                        "cpf":{"type":"string"}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
@@ -70,6 +112,9 @@
                 "properties":{
                     "nome":{
                         "type": "string"
+                    },
+                    "estoque":{
+                        "type":"number"
                     },
                     "preco":{
                         "type": "number"
