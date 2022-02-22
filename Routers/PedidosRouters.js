@@ -2,7 +2,15 @@ const express = require('express');
 const Pedidos = require('../DATABASE/pedidos')
 const router = express.Router()
 
-//Pega pedidos
+//Pega todos pedidos
+router.get('/Pedidos', async (req,res) => {
+   const verifiPedidos = await Pedidos.findAll()
+   if(verifiPedidos <= [0]){
+      res.status(404).json("Nenhum pedido")
+   }
+   return res.status(200).json(verifiPedidos)
+})
+//Pega apenas um pedido
 router.get('/Pedidos/:id_pedido',async (req,res) => {
    //Id para localizar o pedido
    const numero_pedido = req.params.id_pedido
