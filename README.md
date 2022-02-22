@@ -4,18 +4,17 @@
 - [Objetivos](#objetivos)
 
 # Guia para instalação
+
 * Para instalar dependências digite no terminal oque esta  aqui ⬇️
 
 ```
-npm init
+npm install
 docker-compose up
 ```
 * Abra um novo terminal para iniciarmos o servidor ⬇️
 ```npm
 npm start
 ```
-* Após isso use a documentação da API em http://localhost:3006/api-docs
-    ![foto da api](https://user-images.githubusercontent.com/79177415/154811820-f5679ccd-d48b-4204-b9c2-1258a8d8f774.png)
 
   
 
@@ -34,4 +33,4 @@ npm start
 - [x] Criar CRUD para usuarios.
 - [x] Criar CRUD para Produtos.
 - [x] Criar CRUD para Pedidos.
-- [ ] Criando Documentação da API
+- [ ] Criando Documentação da API.
