@@ -1,3 +1,4 @@
+# Tópicos do Projeto
 - [Guia para instalação](#guia-para-instalação)
 - [Sobre repositório](#sobre-repositório)
 - [Dependências usadas](#dependências-usadas)
@@ -9,6 +10,8 @@
 
 ```
 npm install
+```
+```
 docker-compose up
 ```
 * Abra um novo terminal para iniciarmos o servidor ⬇️
@@ -16,10 +19,11 @@ docker-compose up
 npm start
 ```
 
-  
-
 # Sobre repositório
-* Estou estudando docker e CRUD.
+* Uma API sem autenticação com três tabelas.
+* Tabelas (usuários,produtos,pedidos).
+* Cada tabela possuí um CRUD.
+
 
 # Dependências usadas
 * express: 4.17.2

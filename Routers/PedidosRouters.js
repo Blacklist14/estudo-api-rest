@@ -4,11 +4,15 @@ const router = express.Router()
 
 //Pega todos pedidos
 router.get('/Pedidos', async (req,res) => {
-   const verifiPedidos = await Pedidos.findAll()
-   if(verifiPedidos <= [0]){
-      res.status(404).json("Nenhum pedido")
-   }
-   return res.status(200).json(verifiPedidos)
+   const verifiPedidos = await Pedidos.findAll().then((reponse) => {
+      if(reponse <= [0]){
+         res.status(404).json({Error:"no existing order"})
+      }
+      return res.status(200).json({Success:reponse})
+   }).catch((Error) => {
+      res.status(404).json({Error:Error})
+   })
+   
 })
 //Pega apenas um pedido
 router.get('/Pedidos/:id_pedido',async (req,res) => {
@@ -19,16 +23,16 @@ router.get('/Pedidos/:id_pedido',async (req,res) => {
       where:{numero_pedido}
    })
    if(verifiPedidos <= [0]){
-      return res.status(404).json({mesagem:"pedido inexistente"})
+      return res.status(404).json({Error:"non-existent order"})
    }else{
-      return res.status(200).json(verifiPedidos)
+      return res.status(200).json({Sucess:verifiPedidos})
    }
 })
 // Cria um novo pedido
 router.post('/Pedidos', async (req,res) => {
    const {quantidade_produto,produtoId,clientId} = req.body
    const novoPedido = await Pedidos.create({quantidade_produto,produtoId,clientId})
-   res.status(201).json(novoPedido)
+   res.status(201).json({Sucess:novoPedido})
 })
 
 module.exports = router
