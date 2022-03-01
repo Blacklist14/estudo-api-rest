@@ -18,6 +18,7 @@ docker-compose up
 ```npm
 npm start
 ```
+* Crie um .env usando o arquivo .env_exemplo como exemplo.
 
 # Sobre repositório
 * Uma API sem autenticação com três tabelas.
@@ -37,4 +38,5 @@ npm start
 - [x] Criar CRUD para usuarios.
 - [x] Criar CRUD para Produtos.
 - [x] Criar CRUD para Pedidos.
+- [x] Usar Variavel de Ambiente
 - [ ] Criando Documentação da API.
