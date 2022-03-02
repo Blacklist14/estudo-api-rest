@@ -1,23 +1,15 @@
 const express = require("express");
 const Usuario = require("../DATABASE/usuarios");
+const verifyJWT = require("./jsonToken")
 const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const router = express.Router();
-
-// Verifica JWT
-function verifyJWT (req,res,next){
-    const token = req.headers['x-access-token']
-    if(!token){return res.status(401).send({auth:false,message:"No token provided"})}
-    jwt.verify(token,"GOKU",(err,decoded)=>{
-        if(err){return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });}
-    })
-    next()
-}
 
 // Pega todos usuarios
 router.get("/Usuarios",verifyJWT,async (req,res) => {
     const busUsuarios = await Usuario.findAll()
     if(busUsuarios <= [0]){
-        return res.status(404).json({message:"Nenhum usuario"})
+        return res.status(204).json({message:"Nenhum usuario"})
     }else{
         return res.status(200).json(busUsuarios)
     }
@@ -40,7 +32,7 @@ router.post("/Usuarios", async (req,res) => {
         if(verifiCPF <= [0]){
             const novoUsuario = await Usuario.create(dadUsuarios).then(() => {
                 //TOKEN DE AUTENTICAÇÃO
-                const jwtToken = jwt.sign({name:dadUsuarios.nome},"GOKU",{algorithm: "HS384",expiresIn:"30days"})
+                const jwtToken = jwt.sign({name:dadUsuarios.nome},process.env.SECRET,{algorithm: "HS384",expiresIn:"30days"})
                 //RETORNA MESSAGEM DE SUCESSO COM DADOS E TOKEN
                 return res.status(201).json({message:"successfully created",dadUsuarios,jwtToken})
             },() => {
@@ -62,11 +54,14 @@ router.delete("/Usuarios/:id_usuario",verifyJWT,async (req,res) => {
     const id = req.params.id_usuario
     const dados = await Usuario.findAll({where:{id}})
     if(dados >= [0]){
-        const delUsuario = await Usuario.destroy({where:{id}})
-        return res.status(200).json({mesagem:"Usuario deletado",dados})
+        const delUsuario = await Usuario.destroy({where:{id}}).then(()=>{
+            return res.status(200).json({mesagem:"Usuario deletado",dados})
+        },()=>{
+            return res.status(204).json({mesagem:"Usuario inexistente"})
+        })
     }
     else{
-        return res.status(404).json({mesagem:"Usuario inexistente"})
+        return res.status(204).json({mesagem:"Usuario inexistente"})
     }
 })
 // Atualiza dados usuario
@@ -79,7 +74,7 @@ router.patch("/Usuarios/:id_usuario",verifyJWT,async (req,res) => {
         return res.status(200).json({mesagem:"Usuario atualizado",dadosUP})    
     }
     else{
-        res.status(404).json({mesagem:"Usuario inexistente"})
+        res.status(204).json({mesagem:"Usuario inexistente"})
     }
 
 })

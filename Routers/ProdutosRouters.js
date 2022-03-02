@@ -1,14 +1,15 @@
 const express = require('express');
 const Produto = require('../DATABASE/produto')
+const verifyJWT = require("./jsonToken")
 const router = express.Router()
 
 // Pega Todos os Produtos
-router.get('/Produtos', async (req, res) => {
+router.get('/Produtos',verifyJWT, async (req, res) => {
     const produto = await Produto.findAll();
     return res.status(200).json(produto)
 })
 // Cria novos produtos
-router.post('/Produtos', async (req, res) => {
+router.post('/Produtos',verifyJWT, async (req, res) => {
     const {nome,estoque,preco,descricao} = req.body;
     const novoProduto = await Produto.create({nome,estoque,preco,descricao})
 
@@ -16,7 +17,7 @@ router.post('/Produtos', async (req, res) => {
        
 });
 // Deleta produto
-router.delete('/Produtos/:id_name', async (req, res) => {
+router.delete('/Produtos/:id_name',verifyJWT, async (req, res) => {
     const id = req.params.id_name
 
     // BUSCA SE EXISTE ID 
@@ -24,7 +25,7 @@ router.delete('/Produtos/:id_name', async (req, res) => {
         where: {id}
     })
     if (consuProduto === null) {
-        return res.status(404).json({
+        return res.status(204).json({
             erro: "ID não encontrado"
         })
     } else {
@@ -39,7 +40,7 @@ router.delete('/Produtos/:id_name', async (req, res) => {
     }
 })
 // Atualiza produto
-router.patch('/Produtos/:id_produto',async (req,res) => {
+router.patch('/Produtos/:id_produto',verifyJWT,async (req,res) => {
     const id = req.params.id_produto
     const produtoUp = req.body
 
@@ -47,7 +48,7 @@ router.patch('/Produtos/:id_produto',async (req,res) => {
         where: {id}
     })
     if(consuProduto === null){
-        return res.status(404).json({message:"Produto inexistente"})
+        return res.status(204).json({message:"Produto inexistente"})
     }
     else{
         const attProduto = await Produto.update(produtoUp,

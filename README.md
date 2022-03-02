@@ -1,5 +1,6 @@
 # Tópicos do Projeto
 - [Guia para instalação](#guia-para-instalação)
+- [Guia TEMPORÁRIO de consumo](#guia-temporário-de-consumo)
 - [Sobre repositório](#sobre-repositório)
 - [Dependências usadas](#dependências-usadas)
 - [Objetivos](#objetivos)
@@ -19,6 +20,18 @@ docker-compose up
 npm start
 ```
 * Crie um .env usando o arquivo .env_exemplo como exemplo.
+
+# Guia TEMPORÁRIO de consumo
+* Utilize o [insomnia](https://insomnia.rest/download) para fazer as requisições!!
+
+* Primeiro crie um usuário para obter o token para permitir acesso.
+- Use o metodo POST em http://localhost:3006/Usuarios para pegar.
+![Screenshot_1](https://user-images.githubusercontent.com/79177415/156449169-aaf2665d-a2e6-448c-8915-d22aa677f6c8.png)
+
+* Perceba que a resposta um JSON, tem o jwtToken que e necessário para as outras requisições.( coloque o token na query token)
+
+- Use o metodo GET em http://localhost:3006/Usuarios, pegara todos os usuários registrados,lembre-se de colocar a QUERY token!!!.
+![Screenshot_2](https://user-images.githubusercontent.com/79177415/156449982-e1ef095a-8d8f-4f1e-a7ec-c6dc71231dad.png)
 
 # Sobre repositório
 * Uma API sem autenticação com três tabelas.
@@ -46,6 +59,6 @@ npm start
 - [x] Criar CRUD para Pedidos.
 - [x] Usar Variavel de Ambiente
 - [x] Adicionar JWT em Usuarios
-- [ ] Adicionar JWT em Produtos
-- [ ] Adicionar JWT em Pedidos
+- [x] Adicionar JWT em Produtos
+- [x] Adicionar JWT em Pedidos
 - [ ] Criando Documentação da API.
