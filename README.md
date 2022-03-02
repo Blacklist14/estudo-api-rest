@@ -31,6 +31,12 @@ npm start
 * mysql2: 2.3.3
 * nodemon: 2.0.15
 * sequelize: 6.16.1
+* body-parser: 1.19.2
+* cors: 2.8.5
+* docker-compose: 0.23.17
+* dotenv: 16.0.0
+* jsonwebtoken: 8.5.1
+* morgan: 1.10.0
 
 # Objetivos
 
