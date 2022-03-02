@@ -41,8 +41,11 @@ npm start
 # Objetivos
 
 - [x] Criar imagem Mysql e conectar com Sequelize.
-- [x] Criar CRUD para usuarios.
+- [x] Criar CRUD para Usuarios.
 - [x] Criar CRUD para Produtos.
 - [x] Criar CRUD para Pedidos.
 - [x] Usar Variavel de Ambiente
+- [x] Adicionar JWT em Usuarios
+- [ ] Adicionar JWT em Produtos
+- [ ] Adicionar JWT em Pedidos
 - [ ] Criando Documentação da API.
