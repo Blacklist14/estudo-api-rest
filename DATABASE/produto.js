@@ -10,7 +10,7 @@ const Produto = database.define('produto', {
     },
     nome: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     estoque:{
         type: Sequelize.INTEGER,

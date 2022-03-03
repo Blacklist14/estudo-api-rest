@@ -15,7 +15,7 @@ const Usuarios = database.define('usuarios',{
     },
     cpf:{
         type:Sequelize.STRING(14),
-        allowNull:true,
+        allowNull:false,
         unique:true
     }
 })

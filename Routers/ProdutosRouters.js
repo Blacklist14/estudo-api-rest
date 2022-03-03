@@ -11,10 +11,12 @@ router.get('/Produtos',verifyJWT, async (req, res) => {
 // Cria novos produtos
 router.post('/Produtos',verifyJWT, async (req, res) => {
     const {nome,estoque,preco,descricao} = req.body;
-    const novoProduto = await Produto.create({nome,estoque,preco,descricao})
-
-    return res.status(201).json({ menssagem: "Produto criado"})
-       
+    const novoProduto = await Produto.create({nome,estoque,preco,descricao}).then(()=>{
+            return res.status(201).json({ Success: "Product created"})
+        }
+    ,(error)=>{
+        return res.status(400).json({ Error: error}) 
+    })    
 });
 // Deleta produto
 router.delete('/Produtos/:id_name',verifyJWT, async (req, res) => {
@@ -26,16 +28,16 @@ router.delete('/Produtos/:id_name',verifyJWT, async (req, res) => {
     })
     if (consuProduto === null) {
         return res.status(204).json({
-            erro: "ID não encontrado"
+            Error: "ID not found"
         })
     } else {
         console.log(consuProduto)
         const delProduto = await Produto.destroy({
             where: {id}
-        })
-        return res.status(200).json({
-            id,
-            message: "Deletado"
+        }).then(()=>{
+            return res.status(200).json({id,Success: "Deleted" })
+        },(error)=>{
+            return res.status(400).json({Error:error})
         })
     }
 })
@@ -47,15 +49,13 @@ router.patch('/Produtos/:id_produto',verifyJWT,async (req,res) => {
     const consuProduto = await Produto.findOne({
         where: {id}
     })
-    if(consuProduto === null){
-        return res.status(204).json({message:"Produto inexistente"})
+    if(consuProduto != undefined){
+        const attProduto = await Produto.update(produtoUp,{ where:{id}})
+            return res.status(200).json({Success:"Update completed",id})
     }
     else{
-        const attProduto = await Produto.update(produtoUp,
-        {
-            where:{id}
-        })
-        return res.status(200).json({message:"Update concluido",id})
+        return res.status(404).json({Error:"non-existent product"})
+        
     }
 })
 module.exports = router;
