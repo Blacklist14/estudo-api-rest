@@ -1,9 +1,7 @@
 const express = require('express');
-const Pedidos = require('../DATABASE/pedidos');
-const Produto = require('../DATABASE/produto');
-const Usuarios = require('../DATABASE/usuarios');
-const verifyJWT = require("./jsonToken")
-const router = express.Router()
+const Pedidos = require('../database/pedidos');
+const verifyJWT = require("./jsonToken");
+const router = express.Router();
 
 //Pega todos pedidos
 router.get('/Pedidos',verifyJWT, async (req,res) => {

@@ -1,5 +1,5 @@
 const express = require('express');
-const Produto = require('../DATABASE/produto')
+const Produto = require('../database/produto')
 const verifyJWT = require("./jsonToken")
 const router = express.Router()
 

@@ -1,9 +1,9 @@
 const express = require("express");
-const Usuario = require("../DATABASE/usuarios");
 const verifyJWT = require("./jsonToken")
-const jwt = require("jsonwebtoken")
-require("dotenv").config()
+const Usuario = require("../database/usuarios");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 // Pega todos usuarios
 router.get("/Usuarios",verifyJWT,async (req,res) => {
