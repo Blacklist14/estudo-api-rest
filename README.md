@@ -25,7 +25,7 @@ npm start
 * Utilize o [insomnia](https://insomnia.rest/download) para fazer as requisições!!
 
 * Primeiro crie um usuário para obter o token para permitir acesso.
-- Use o metodo POST em http://localhost:3006/Usuarios para pegar.
+- Use o metodo POST em http://localhost:3006/Usuarios para pegar o token.
 ![Screenshot_1](https://user-images.githubusercontent.com/79177415/156449169-aaf2665d-a2e6-448c-8915-d22aa677f6c8.png)
 
 * Perceba que a resposta um JSON, tem o jwtToken que e necessário para as outras requisições.( coloque o token na query token)
