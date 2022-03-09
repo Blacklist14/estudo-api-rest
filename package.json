@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/server.js"
+    "start": "nodemon ./src/server.js",
+    "swagger-autogen": "node swagger.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +18,9 @@
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.15",
-    "sequelize": "^6.16.1"
+    "sequelize": "^6.16.1",
+    "swagger-autogen": "^2.19.0",
+    "swagger-ui-express": "^4.3.0"
   },
   "description": "* Para instalar dependências digite no terminal oque esta  aqui ⬇️",
   "repository": {
