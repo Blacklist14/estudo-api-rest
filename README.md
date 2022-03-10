@@ -1,7 +1,6 @@
 # Tópicos do Projeto
 - [Guia para instalação](#guia-para-instalação)
 - [Documentação completa](#Documentação)
-- [Guia TEMPORÁRIO de consumo](#guia-temporário-de-consumo)
 - [Sobre repositório](#sobre-repositório)
 - [Dependências usadas](#dependências-usadas)
 - [Objetivos](#objetivos)
