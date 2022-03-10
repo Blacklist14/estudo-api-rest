@@ -25,10 +25,8 @@ npm start
 * Acesse http://localhost:3006/doc para ver
 
 # Sobre repositório
-* Uma API sem autenticação com três tabelas.
+* Uma API com autenticação usando JWT e usando BANCO DE DADOS.
 * Tabelas (usuários,produtos,pedidos).
-* Cada tabela possuí um CRUD.
-
 
 # Dependências usadas
 * express: 4.17.2
