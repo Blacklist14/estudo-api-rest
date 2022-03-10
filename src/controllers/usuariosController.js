@@ -1,4 +1,5 @@
 const Usuario = require("../database/usuarios");
+const jwt = require("jsonwebtoken")
 module.exports= {
     get: async (req,res) => {
         const busUsuarios = await Usuario.findAll()
