@@ -11,5 +11,5 @@ router.post('/Produtos',verifyJWT,produtosController.post);
 // Deleta produto
 router.delete('/Produtos/:id_name',verifyJWT,produtosController.delete)
 // Atualiza produto
-router.patch('/Produtos/:id_produto',verifyJWT,produtosController.patch)
+router.put('/Produtos/:id_produto',verifyJWT,produtosController.put)
 module.exports = router;

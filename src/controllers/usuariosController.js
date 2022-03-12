@@ -7,7 +7,7 @@ module.exports= {
             return res.status(200).json( {error:false,response:busUsuarios} )
         }
         catch(e){
-            return res.status(404).json( {error:true,response:e})
+            return res.status(400).json({error:true,response:'inappropriate order'})
         }
     },
     post: async (req,res) => {
@@ -58,26 +58,30 @@ module.exports= {
             return res.status(400).json({error:true,response:'inappropriate order'})
         }
     },
-    patch:async (req,res) => {
+    put:async (req,res) => {
         const id = req.params.id_usuario
         const update = req.body
-        if(update.nome && !update.cpf && !update.id){
-            try{
-                const dados = await Usuario.findOne({where:{id}})
-                if(dados != null){
-                    await Usuario.update(update,{where:{id}})
-                    return res.status(200).json({error:false,response:"Updated user",update})
-                    
-                }
-                else{
+        try{
+            if(update.nome && !update.cpf && !update.id){
+                try{
+                    const dados = await Usuario.findOne({where:{id}})
+                    if(dados != null){
+                        await Usuario.update(update,{where:{id}})
+                        return res.status(200).json({error:false,response:"Updated user",update})
+                        
+                    }
+                    else{
+                        res.status(404).json({error:true,response:"Non-existent user"})
+                    }
+                }catch{
                     res.status(404).json({error:true,response:"Non-existent user"})
                 }
-            }catch(e){
-                res.status(400).json({error:true,response:"Unable to update non-existent user"})
             }
-        }
-        else{
-            return res.status(400).json({error:true,response:'inappropriate order'})
+            else{
+                return res.status(400).json({error:true,response:'inappropriate order'})
+            }
+        }catch{
+            return res.status(400).json({error:true ,response:"invalid request content"})
         }
     }
 }

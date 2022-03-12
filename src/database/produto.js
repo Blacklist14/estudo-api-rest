@@ -16,8 +16,14 @@ const Produto = database.define('produto', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    preco: Sequelize.INTEGER,
-    descricao: Sequelize.STRING
+    preco: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    descricao:{
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 })
 
 Produto.sync()

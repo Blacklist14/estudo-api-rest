@@ -2,64 +2,47 @@ const Pedidos = require('../database/pedidos');
 
 module.exports = {
     getAll: async (req, res) => {
-        const verifiPedidos = await Pedidos.findAll().then((response) => {
-                if (response != []) {
-                    return res.status(200).json({
-                        Success: response
-                    })
+        const verifiPedidos = await Pedidos.findAll()
+            try{
+                if (verifiPedidos != []) {
+                    return res.status(200).json({ error:false,response:verifiPedidos })
                 } else {
-                    res.status(404).json({
-                        Error: "no existing order"
-                    })
-                }
-            },
-            (error) => {
-                res.status(404).json(error)
-            })
+                    res.status(404).json({error:true,response: "no existing order"})
+                } 
+            }catch{
+                return res.status(400).json({error:true ,response:"invalid request content"})
+            }
+            
 
 
     },
     get: async (req, res) => {
-        //Id para localizar o pedido
         const numero_pedido = req.params.id_pedido
-        //Busca pedidos pelo id
-        const verifiPedidos = await Pedidos.findOne({
-            where: {
-                numero_pedido
-            }
-        }).then((response)=>{
-            if (response != undefined) {
-                return res.status(200).json({
-                    Success: verifiPedidos
-                })
+        try{
+            const verifiPedidos = await Pedidos.findOne({
+                where: {
+                    numero_pedido
+                }
+            })
+            if (verifiPedidos != undefined) {
+                return res.status(200).json({error:false,response: verifiPedidos })
             } else {
-                return res.status(404).json({
-                    Error: "non-existent order"
-                })
+                return res.status(404).json({error:true,response: "non-existent order"})
             }
-        },(error)=>{return res.status(404).json(error)})
+        }
+        catch{
+            return res.status(400).json({error:true ,response:"invalid request content"})
+        }
         
     },
     post: async (req, res) => {
-        const {
-            quantidade_produto,
-            produtoId,
-            clientId
-        } = req.body
-        const novoPedido = await Pedidos.create({
-                quantidade_produto,
-                produtoId,
-                clientId
-            })
-            .then((Success) => {
-                return res.status(201).json({
-                    Success: Success
-                })
-            }, (Error) => {
-                return res.status(400).json({
-                    Error: Error
-                })
-            })
+        const pedidos = req.body
+        try{
+            await Pedidos.create(pedidos)
+            return res.status(201).json({error:true,response:"order created"})
+        }catch(e){
+            return res.status(400).json({error:true ,response:"invalid request content"})
+        }
 
     }
 }

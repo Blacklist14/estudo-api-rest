@@ -4,8 +4,9 @@ const usuariosController = require("./Routers/UsuariosRouters")
 const pedidosController = require("./Routers/PedidosRouters")
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('../swagger_output.json')
+const cors = require("cors")
 
-
+router.use(cors())
 router.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 router.use('/', produtosController)
 router.use('/', usuariosController)

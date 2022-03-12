@@ -12,6 +12,6 @@ router.post("/Usuarios",usuarioController.post)
 // Deleta um usuario
 router.delete("/Usuarios/:id_usuario",verifyJWT,usuarioController.delete)
 // Atualiza dados usuario
-router.patch("/Usuarios/:id_usuario",verifyJWT,usuarioController.patch)
+router.put("/Usuarios/:id_usuario",verifyJWT,usuarioController.put)
 
 module.exports = router;

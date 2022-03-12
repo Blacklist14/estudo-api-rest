@@ -2,64 +2,76 @@ const Produto = require('../database/produto')
 
 module.exports = {
     get:  async (req, res) => {
-        const produto = await Produto.findAll();
-        return res.status(200).json(produto)
+        try{
+            const produto = await Produto.findAll();
+            return res.status(200).json(produto)
+        }catch(e){
+            return res.status(500).json(e)
+        }
     },
     post: async (req, res) => {
-        const {nome,estoque,preco,descricao} = req.body;
-        const novoProduto = await Produto.create({nome,estoque,preco,descricao}).then(()=>{
-                return res.status(201).json({ Success: "Product created"})
-            }
-        ,(error)=>{
-            return res.status(400).json({ Error: error}) 
-        })    
+        const product = req.body
+        try{
+            const newProduct = await Produto.create(product)
+            return res.status(201).json({ error:false,response: "Product created"})
+        }catch(e){
+            return res.status(400).json({error:true ,response:"invalid request content"})
+        }
+
     },
     delete:async (req, res) => {
         const id = req.params.id_name
-    
-        // BUSCA SE EXISTE ID 
-        const consuProduto = await Produto.findOne({
-            where: {id}
-        })
-        if (consuProduto === null) {
-            return res.status(204).json({
-                Error: "ID not found"
-            })
-        } else {
-            console.log(consuProduto)
-            const delProduto = await Produto.destroy({
-                where: {id}
-            }).then(()=>{
-                return res.status(200).json({id,Success: "Deleted" })
-            },(error)=>{
-                return res.status(400).json({Error:error})
-            })
-        }
-    },
-    patch: async (req,res) => {
-        const id = req.params.id_produto
-        const update = req.body
-        if(update.nome && !update.id){
+        try{
+            // BUSCA SE EXISTE ID 
             const consuProduto = await Produto.findOne({
                 where: {id}
             })
-            if(consuProduto != undefined){
+            if(consuProduto == null){
+                res.status(400).json({error:true ,response:"id not found"})
+            }
+            else{
                 try{
-                    await Produto.update(update,{ where:{id}})
-                    return res.status(200).json({error:false,response:"Update completed",update})
+                    const delProduto = await Produto.destroy({
+                        where: {id}
+                    })
+                    return res.status(200).json({error:false,response: "deleted"})
                 }
                 catch(e){
-                    return res.status(500).json({error:true,response:e})
+                    return res.status(400).json({error:true,response:e})
+                }
+
+            }
+        }catch(e){
+            return res.status(400).json({error:true ,response:"invalid request content"})
+        }
+    },
+    put: async (req,res) => {
+        const id = req.params.id_produto
+        const update = req.body
+        try{
+            if(update.nome && !update.id){
+                const consuProduto = await Produto.findOne({
+                    where: {id}
+                })
+                if(consuProduto != undefined){
+                    try{
+                        await Produto.update(update,{ where:{id}})
+                        return res.status(200).json({error:false,response:"Update completed",update})
+                    }
+                    catch(e){
+                        return res.status(500).json({error:true,response:e})
+                    }
+                }
+                else{
+                    return res.status(404).json({error:true,response:"non-existent product"})
+                    
                 }
             }
             else{
-                return res.status(404).json({error:true,response:"non-existent product"})
-                
+                return res.status(400).json({error:true,response:e}) 
             }
+        }catch{
+            return res.status(400).json({error:true ,response:"invalid request content"})
         }
-        else{
-            return res.status(400).json({error:true,response:'inappropriate order'}) 
-        }
-        
     }
 }
