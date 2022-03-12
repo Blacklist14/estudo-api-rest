@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
+    "version": "0.0.1",
     "title": "REST API",
-    "description": "Api com autenticação, obrigatorio criar usuario primeiro!!"
+    "description": "Api node com autenticação, criada com objetivo de estudos"
   },
   "host": "localhost:3006",
   "basePath": "/",
@@ -12,38 +12,6 @@
   ],
   "paths": {
     "/Usuarios": {
-
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "cpf": {
-                  "example": "any"
-                },
-                "nome": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
       "get": {
         "description": "",
         "parameters": [
@@ -57,14 +25,42 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cpf": {
+                  "example": "907.776.180-28"
+                },
+                "nome": {
+                  "example": "Fernando"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
           },
-          "404": {
-            "description": "Not Found"
+          "400": {
+            "description": "Bad Request"
           },
-          "500": {
-            "description": "Internal Server Error"
+          "422": {
+            "description": "Unprocessable Entity"
           }
         }
       }
@@ -89,18 +85,18 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
-      "patch": {
+      "put": {
         "description": "",
         "parameters": [
           {
@@ -113,6 +109,18 @@
             "name": "token",
             "in": "header",
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "lucas"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -171,16 +179,13 @@
               "type": "object",
               "properties": {
                 "nome": {
-                  "example": "any"
-                },
-                "estoque": {
-                  "example": "any"
+                  "example": "Mochila"
                 },
                 "preco": {
-                  "example": "any"
+                  "example": "5000"
                 },
-                "descricao": {
-                  "example": "any"
+                "descricao":{
+                  "example": "Mochila cara porem igual a todas"
                 }
               }
             }
@@ -195,9 +200,6 @@
           },
           "401": {
             "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
@@ -219,26 +221,14 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
           "401": {
             "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
     },
     "/Produtos/{id_produto}": {
-      "patch": {
+      "put": {
         "description": "",
         "parameters": [
           {
@@ -251,11 +241,29 @@
             "name": "token",
             "in": "header",
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                },
+                "id": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
@@ -283,14 +291,14 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -309,13 +317,13 @@
               "type": "object",
               "properties": {
                 "quantidade_produto": {
-                  "example": "any"
+                  "example": "30"
                 },
                 "produtoId": {
-                  "example": "any"
+                  "example": "13"
                 },
                 "clientId": {
-                  "example": "any"
+                  "example": "1"
                 }
               }
             }
@@ -330,9 +338,6 @@
           },
           "401": {
             "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
@@ -357,14 +362,14 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
