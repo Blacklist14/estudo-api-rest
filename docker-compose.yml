@@ -4,6 +4,8 @@ services:
 
   db:
     image: mysql
+    env_file:
+      - .env
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
