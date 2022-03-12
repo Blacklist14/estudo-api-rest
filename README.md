@@ -47,7 +47,5 @@ npm start
 - [x] Criar CRUD para Produtos.
 - [x] Criar CRUD para Pedidos.
 - [x] Usar Variavel de Ambiente
-- [x] Adicionar JWT em Usuarios
-- [x] Adicionar JWT em Produtos
-- [x] Adicionar JWT em Pedidos
+- [x] Adicionar JWT
 - [X] Criando Documentação da API.

@@ -38,18 +38,28 @@ module.exports = {
     },
     patch: async (req,res) => {
         const id = req.params.id_produto
-        const produtoUp = req.body
-    
-        const consuProduto = await Produto.findOne({
-            where: {id}
-        })
-        if(consuProduto != undefined){
-            const attProduto = await Produto.update(produtoUp,{ where:{id}})
-                return res.status(200).json({Success:"Update completed",id})
+        const update = req.body
+        if(update.nome && !update.id){
+            const consuProduto = await Produto.findOne({
+                where: {id}
+            })
+            if(consuProduto != undefined){
+                try{
+                    await Produto.update(update,{ where:{id}})
+                    return res.status(200).json({error:false,response:"Update completed",update})
+                }
+                catch(e){
+                    return res.status(500).json({error:true,response:e})
+                }
+            }
+            else{
+                return res.status(404).json({error:true,response:"non-existent product"})
+                
+            }
         }
         else{
-            return res.status(404).json({Error:"non-existent product"})
-            
+            return res.status(400).json({error:true,response:'inappropriate order'}) 
         }
+        
     }
 }
